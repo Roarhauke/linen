@@ -5,6 +5,7 @@ try:
     import queue
     import threading
     import time                 # temporary, delete!
+    from puzzle import Puzzle
 except Exception as error:      # in case it breaks
     print(f"failed to to import modules: {error}!")
     sys.exit(1)
@@ -23,6 +24,7 @@ def input_handler_loop():       # the loop that handles input
             ready = False
 
 threading.Thread(target=input_handler_loop, daemon=True).start()    # spawn the input loop
+
 def logo():
     print("===================")    # yummy logo
     print("L   III N N EEE N N")
@@ -44,6 +46,7 @@ while running:                  # main loop
         command = command_queue.get()
         command = command.split()
         if command[0] == "quit":
+            print("bye")
             running = False
         elif command[0] == "about":
             logo()
@@ -51,6 +54,8 @@ while running:                  # main loop
             try:
                 with open(command[1], "rb") as file:
                     config = tomllib.load(file)
+                puzzle = Puzzle(config)
+                print(f"loaded: {command[1]}")
             except Exception as error:
                 print(f"failed to load: {error}!")
         if running:
