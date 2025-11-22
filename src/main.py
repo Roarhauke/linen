@@ -71,6 +71,12 @@ while running:                  # main loop
                 print(puzzle.positions)
             except:
                 print("no puzzle loaded!")
+        
+        elif command[0] == "move":
+            try:
+                puzzle.apply_move(command[1])
+            except Exception as error:
+                print(f"failed to move: {error}!")
 
         else:
             print("unkown command")

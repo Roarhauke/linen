@@ -10,6 +10,7 @@ class Puzzle:               # yeah, thait's OOP for you
         self.name = definition["basic-information"]["name"]
         self.positions = []
         self.moves = {}
+        self.position_indexes = {}
         print(f"name: {self.name}")
 
         for position in definition["positions"]["positions"]:
@@ -17,6 +18,24 @@ class Puzzle:               # yeah, thait's OOP for you
         
         for move, permutation in definition["moves"].items():
             self.moves[move] = permutation
+        
+        index = 0
+
+        for position in self.positions:          # store what position names have what indexes in positions
+            self.position_indexes[position[0]] = index
+            index = index + 1
 
         print(f"positions:\n{self.positions}")
         print(f"moves:\n{self.moves}")
+        print(self.position_indexes)
+
+    def apply_move(self, move_name):
+        try:
+            move = self.moves[move_name]
+        except:
+            raise Exception("unknown move")
+        temporary_positions = [[None, None] * len(self.positions)]
+        for swap in move:
+            temporary_positions[
+            self.positions = temporary_positions
+            print(self.positions)
