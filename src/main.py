@@ -4,7 +4,6 @@ try:
     import pygame
     import queue
     import threading
-    import time                 # temporary, delete!
     from puzzle import Puzzle
 except Exception as error:      # in case it breaks
     print(f"failed to to import modules: {error}!")
