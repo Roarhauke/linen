@@ -37,12 +37,27 @@ def logo():
     print("===================")
 
 logo()
+print("initializing pygame")
+try:
+    pygame.init()
+    screen = pygame.display.set_mode((640, 640))
+    pygame.display.set_caption("LINEN visualizer")
+    clock = pygame.time.Clock()
+    font = pygame.font.Font(None, 36)
+except Exception as error:
+    print(f"pygame initialization error: {error}")
+    sys.exit(1)
+
 
 running = True                  # get ready for main loop
 ready = True
+puzzle = None
     
 while running:                  # main loop
     while not command_queue.empty():
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
         command = command_queue.get()
         command = command.split()
         if command[0] == "quit":
@@ -67,9 +82,9 @@ while running:                  # main loop
                 print(f"failed to load: {error}!")
 
         elif command[0] == "state":
-            try:
+            if puzzle is not None:
                 print(puzzle.positions)
-            except:
+            else:
                 print("no puzzle loaded!")
         
         elif command[0] == "move":
@@ -82,4 +97,16 @@ while running:                  # main loop
             print("unkown command")
         if running:
             ready = True
-    time.sleep(0.01)
+
+    screen.fill((127, 127, 127))
+    if puzzle is not None:
+        text = puzzle.name
+    else:
+        text = "no puzzle loaded"
+
+    text_surface = font.render(text, True, (255, 255, 255))
+    screen.blit(text_surface, (0, 0))
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
