@@ -34,8 +34,15 @@ class Puzzle:               # yeah, thait's OOP for you
             move = self.moves[move_name]
         except:
             raise Exception("unknown move")
-        temporary_positions = [[None, None] * len(self.positions)]
-        for swap in move:
-            temporary_positions[
-            self.positions = temporary_positions
-            print(self.positions)
+        temporary_positions = []
+        for position in self.positions:
+            temporary_positions.append([position[0],None])
+        
+        for position in temporary_positions:
+            for swap in move:
+                if swap[1] == position[0]:
+                    break
+            position[1] = self.positions[self.position_indexes[swap[0]]][1]
+
+        self.positions = temporary_positions
+        print(self.positions)

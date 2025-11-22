@@ -10,7 +10,7 @@ except Exception as error:      # in case it breaks
     print(f"failed to to import modules: {error}!")
     sys.exit(1)
 
-__version__ = "prefunctional"
+__version__ = "0.0.1"
 
 command_queue = queue.Queue()   # initialize the command queue
 ready = False
