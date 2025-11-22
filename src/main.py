@@ -48,8 +48,15 @@ while running:                  # main loop
         if command[0] == "quit":
             print("bye")
             running = False
+
         elif command[0] == "about":
+            try:
+                if command[1] != None:
+                    print(f"heh, you found the easter {command[1]}!")
+            except:
+                    pass
             logo()
+
         elif command[0] == "load":
             try:
                 with open(command[1], "rb") as file:
@@ -58,6 +65,15 @@ while running:                  # main loop
                 print(f"loaded: {command[1]}")
             except Exception as error:
                 print(f"failed to load: {error}!")
+
+        elif command[0] == "state":
+            try:
+                print(puzzle.positions)
+            except:
+                print("no puzzle loaded!")
+
+        else:
+            print("unkown command")
         if running:
             ready = True
     time.sleep(0.01)

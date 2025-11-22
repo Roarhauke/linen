@@ -10,12 +10,13 @@ class Puzzle:               # yeah, thait's OOP for you
         self.name = definition["basic-information"]["name"]
         self.positions = []
         self.moves = {}
-        print(self.name)
+        print(f"name: {self.name}")
 
         for position in definition["positions"]["positions"]:
             self.positions.append(position)
         
-        for move in definition["moves"]:
-            print(move)
+        for move, permutation in definition["moves"].items():
+            self.moves[move] = permutation
 
-        print(self.positions)
+        print(f"positions:\n{self.positions}")
+        print(f"moves:\n{self.moves}")
