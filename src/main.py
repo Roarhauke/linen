@@ -104,8 +104,10 @@ while running:                  # main loop
     else:
         text = "no puzzle loaded"
 
-    text_surface = font.render(text, True, (255, 255, 255))
-    screen.blit(text_surface, (0, 0))
+    puzzle_text = font.render(text, True, (255, 255, 255))
+    version_text = font.render(f"linen {__version__}", True, (255, 255, 255))
+    screen.blit(puzzle_text, (0, 0))
+    screen.blit(version_text, (0, 640-36))
     pygame.display.flip()
     clock.tick(60)
 
