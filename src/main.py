@@ -9,7 +9,7 @@ except Exception as error:      # in case it breaks
     print(f"failed to to import modules: {error}!")
     sys.exit(1)
 
-__version__ = "2025.11.21.1"
+__version__ = "prefunctional"
 
 command_queue = queue.Queue()   # initialize the command queue
 ready = False
@@ -42,10 +42,17 @@ ready = True
 while running:                  # main loop
     while not command_queue.empty():
         command = command_queue.get()
-        if command == "quit":
+        command = command.split()
+        if command[0] == "quit":
             running = False
-        elif command == "about":
+        elif command[0] == "about":
             logo()
+        elif command[0] == "load":
+            try:
+                with open(command[1], "rb") as file:
+                    config = tomllib.load(file)
+            except Exception as error:
+                print(f"failed to load: {error}!")
         if running:
             ready = True
     time.sleep(0.01)
