@@ -1,0 +1,12 @@
+[basic-information]
+name = "color test 1"
+version = 1
+type = "puzzle"
+
+[positions]
+positions = [[1,1], [2,2], [3,3], [4,4]]
+
+[moves]
+
+[visual]
+colors = [[1, [0,0,0]], [2, [255, 255, 255]], [3, [0,0,255]], [4, [255, 0, 0]]]

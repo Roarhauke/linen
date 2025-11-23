@@ -101,6 +101,10 @@ while running:                  # main loop
 
     if puzzle is not None:
         text = puzzle.name
+        swatch_index = 0
+        for color, value in puzzle.colors.items():
+            pygame.draw.rect(screen, value, pygame.Rect(swatch_index * 20, 50, 20, 20))
+            swatch_index = swatch_index + 1
     else:
         text = "no puzzle loaded"
 
