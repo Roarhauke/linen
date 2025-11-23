@@ -4,4 +4,4 @@
 
 LINEN is an abstract, generalized twisty puzzle simulator, currently in its early alpha development
 
-Let it be known that, LINEN is still in extremely early development, and doesn't even currently have a 3d visualizer for puzzles, but I am working on that and other features 
+Let it be known that, LINEN is still in extremely early development, and many commits are completely nonfunctional, and it doesn't currently have a 3d visualizer for puzzles, but I am working on that and other features.
