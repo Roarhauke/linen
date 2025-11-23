@@ -54,9 +54,6 @@ puzzle = None
     
 while running:                  # main loop
     while not command_queue.empty():
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
         command = command_queue.get()
         command = command.split()
         if command[0] == "quit":
@@ -94,8 +91,11 @@ while running:                  # main loop
         
         else:
             print("unkown command")
-        if running:
-            ready = True
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            print("bye")
+            running = False
 
     screen.fill((127, 127, 127))
 
@@ -113,6 +113,10 @@ while running:                  # main loop
     screen.blit(puzzle_text, (0, 0))
     screen.blit(version_text, (0, 640-36))
     pygame.display.flip()
+
+    if running:
+        ready = True
+
     clock.tick(60)
 
 pygame.quit()
