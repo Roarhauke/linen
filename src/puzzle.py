@@ -11,6 +11,7 @@ class Puzzle:               # yeah, thait's OOP for you
         self.positions = []
         self.moves = {}
         self.position_indexes = {}
+        self.colors = {}
         print(f"name: {self.name}")
 
         for position in definition["positions"]["positions"]:
@@ -18,16 +19,15 @@ class Puzzle:               # yeah, thait's OOP for you
         
         for move, permutation in definition["moves"].items():
             self.moves[move] = permutation
+
+        for color in definition["visual"]["colors"]:
+            self.colors[color[0]] = (color[1][0], color[1][1], color[1][2])
         
         index = 0
 
         for position in self.positions:          # store what position names have what indexes in positions
             self.position_indexes[position[0]] = index
             index = index + 1
-
-        print(f"positions:\n{self.positions}")
-        print(f"moves:\n{self.moves}")
-        print(self.position_indexes)
 
     def apply_move(self, move_name):
         try:

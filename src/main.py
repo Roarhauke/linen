@@ -91,13 +91,14 @@ while running:                  # main loop
                 puzzle.apply_move(command[1])
             except Exception as error:
                 print(f"failed to move: {error}!")
-
+        
         else:
             print("unkown command")
         if running:
             ready = True
 
     screen.fill((127, 127, 127))
+
     if puzzle is not None:
         text = puzzle.name
     else:
