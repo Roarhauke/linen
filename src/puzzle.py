@@ -36,13 +36,13 @@ class Puzzle:               # yeah, thait's OOP for you
         except:
             raise Exception("unknown move")
         temporary_positions = []
-        for position in self.positions:
+        for position in self.positions:         # fill puzzle position array with empty
             temporary_positions.append([position[0],None])
         
         for position in temporary_positions:
             for swap in move:
                 if swap[1] == position[0]:
                     break
-            position[1] = self.positions[self.position_indexes[swap[0]]][1]
+            position[1] = self.positions[self.position_indexes[swap[0]]][1]     # this is ugly, basically, it goes through each position name in temporary_positions and fills it with the value gained from self.positions through the magic of dictionaries
 
         self.positions = temporary_positions

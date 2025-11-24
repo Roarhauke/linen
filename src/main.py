@@ -24,7 +24,7 @@ def input_handler_loop():       # the loop that handles input
                 command_queue.put(command)
             ready = False
         else:
-            time.sleep(0.01)
+            time.sleep(0.01)        # this is here because the code broke itself overnight!
 
 threading.Thread(target=input_handler_loop, daemon=True).start()    # spawn the input loop
 
@@ -68,7 +68,7 @@ while running:                  # main loop
             try:
                 if command[1] != None:
                     print(f"heh, you found the easter {command[1]}!")
-            except:
+            except:                         # some day, this code will burn, FIXME
                     pass
             logo()
 
@@ -97,7 +97,7 @@ while running:                  # main loop
         else:
             print("unkown command")
 
-    for event in pygame.event.get():    # pygame event loop (doesn't work)
+    for event in pygame.event.get():    # pygame event loop (doesn't work, FIXME)
         if event.type == pygame.QUIT:
             print("bye")
             running = False
