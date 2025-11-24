@@ -11,8 +11,9 @@ class Puzzle:               # yeah, thait's OOP for you
         self.positions = []
         self.moves = {}
         self.position_indexes = {}
+        self.space_indexes = {}
+        self.color_indexes = {}
         self.colors = {}
-        print(f"name: {self.name}")
 
         for position in definition["positions"]["positions"]:
             self.positions.append(position)
@@ -45,4 +46,3 @@ class Puzzle:               # yeah, thait's OOP for you
             position[1] = self.positions[self.position_indexes[swap[0]]][1]
 
         self.positions = temporary_positions
-        print(self.positions)

@@ -4,6 +4,7 @@ try:
     import pygame
     import queue
     import threading
+    import time
     from puzzle import Puzzle
 except Exception as error:      # in case it breaks
     print(f"failed to to import modules: {error}!")
@@ -19,8 +20,11 @@ def input_handler_loop():       # the loop that handles input
     while True:
         if ready:
             command = input(">>> ")
-            command_queue.put(command)
+            if command != "":
+                command_queue.put(command)
             ready = False
+        else:
+            time.sleep(0.01)
 
 threading.Thread(target=input_handler_loop, daemon=True).start()    # spawn the input loop
 
@@ -53,7 +57,7 @@ ready = True
 puzzle = None
     
 while running:                  # main loop
-    while not command_queue.empty():
+    while not command_queue.empty():        # terminal command loop
         command = command_queue.get()
         command = command.split()
         if command[0] == "quit":
@@ -86,13 +90,14 @@ while running:                  # main loop
         elif command[0] == "move":
             try:
                 puzzle.apply_move(command[1])
+                print(puzzle.positions)
             except Exception as error:
                 print(f"failed to move: {error}!")
         
         else:
             print("unkown command")
 
-    for event in pygame.event.get():
+    for event in pygame.event.get():    # pygame event loop (doesn't work)
         if event.type == pygame.QUIT:
             print("bye")
             running = False

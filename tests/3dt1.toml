@@ -1,0 +1,13 @@
+[basic-information]
+name = "3d test 1"
+version = 1
+type = "puzzle"
+
+[positions]
+positions = [[1, 1]]
+
+[moves]
+
+[visual]
+colors = [[1, 255, 0, 0]]
+positions = [[1, [[1, 1, 0], [1, -1, 0], [-1, -1, 0], [-1, 1, 0]]]]
